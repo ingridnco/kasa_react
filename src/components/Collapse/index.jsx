@@ -11,11 +11,7 @@ const Collapse = ({ title, content }) => {
   }
 
   useEffect(() => {
-    if (isOpen) {
-      setHeight(`${contentRef.current.scrollHeight}px`)
-    } else {
-      setHeight("0px")
-    }
+    isOpen ? setHeight(`${contentRef.current.scrollHeight}px`) : setHeight("0px")
   }, [isOpen])
 
   return (
@@ -24,11 +20,7 @@ const Collapse = ({ title, content }) => {
         <div>{title}</div>
         <img src={arrow} alt="flèche" className={`Arrow ${isOpen ? "open" : ""}`} />
       </div>
-      <div
-        ref={contentRef}
-        className={`Collapse__content ${isOpen ? "open" : ""}`} // Ajout de la classe "open" conditionnellement
-        style={{ height }}
-      >
+      <div ref={contentRef} className={`Collapse__content ${isOpen ? "open" : ""}`} style={{ height }}>
         <div className="Collapse__content__inner">
           <p>{content}</p>
         </div>

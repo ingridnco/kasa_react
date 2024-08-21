@@ -1,4 +1,3 @@
-// import { Outlet, Link } from "react-router-dom"
 import Banner from "../../components/Banner"
 import Collapse from "../../components/Collapse"
 const About = () => {

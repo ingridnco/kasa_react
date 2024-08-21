@@ -167,6 +167,8 @@ code {
 }
 
 .Collapse{
+  position: relative;
+  z-index: 2;
   background-color: #FF6060;
   width:100%;
   color:white;
@@ -200,21 +202,27 @@ code {
   }
 
   .Collapse__content {
+    width:96%;
+    position: relative;
+    top:-50px;
     overflow: hidden;
     height: 0;
-    transition: height 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
-    transform: translateY(-10px); /* Part de légèrement au-dessus */
-    opacity: 0; /* Commence caché */
-  }
+    transition: height 1s ease, transform 1s ease;
+    transform: translateY(0px); 
+     transition-duration: 0.5s;
+   }
 
   .Collapse__content.open {
-    height: auto; /* Ajuste à la taille du contenu */
-    transform: translateY(0); /* Revient à sa position normale */
-    opacity: 1; /* Rend le contenu visible */
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+    height: 500px; 
+    transform: translateY(50px); 
+    transition: height 0.4s ease, transform 0.4s ease,;
   }
   
   .Collapse__content__inner {
-    padding: 5px;
+    padding: 5px 0;
     text-align: left;
     width: 100%;
     & p{
