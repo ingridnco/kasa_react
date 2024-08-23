@@ -4,18 +4,17 @@ import { Link } from "react-router-dom"
 
 const Card = () => {
   return (
-    <div>
-      <ul className="Card__wrapper">
-        {annonces.map((data) => (
-          <li key={data.id} className="Card">
-            <Link to={`/gallery/${data.id}`}></Link>
+    <ul className="Card__wrapper">
+      {annonces.map((data) => (
+        <li key={data.id} className="Card">
+          <Link to={`/logement/${data.id}`}>
             <img src={data.cover} alt={data.title} />
             <div className="Card__gradient"></div>
             <div className="Card__title">{data.title}</div>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
   )
 }
 export default Card

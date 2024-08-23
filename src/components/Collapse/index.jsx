@@ -21,9 +21,7 @@ const Collapse = ({ title, content }) => {
         <img src={arrow} alt="flèche" className={`Arrow ${isOpen ? "open" : ""}`} />
       </div>
       <div ref={contentRef} className={`Collapse__content ${isOpen ? "open" : ""}`} style={{ height }}>
-        <div className="Collapse__content__inner">
-          <p>{content}</p>
-        </div>
+        <div className="Collapse__content--inner">{content}</div>
       </div>
     </div>
   )
