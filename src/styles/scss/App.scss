@@ -1,5 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/************variables***********/
+$black: #000;
+$white: #fff;
+$gray-light: #F6F6F6;
+$red: #FF6060;
+$filter: rgba(0, 0, 0, 0.5);
+$shadow: rgba(0, 0, 0, 0.3);
+
+
+/***************mixins**********************/
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin border-radius($radius:30px) {
+  border-radius: $radius;
+}
+
+@mixin banner-filter-position{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:230px;
+  z-index:2;
+  @include border-radius;
+}
+/******************************************/
+
 body {
   box-sizing: border-box;
   margin: 0 100px;
@@ -16,26 +54,25 @@ ul{
   padding:0;
 }
 
-.list_hidden{
+
+.no_list_style{
   list-style: none;
 }
-
+/****************************************Page Home*************************************/
 .Header{
   padding:40px 0;
-  display:flex;
+  @include flex-space-between;
   width:auto;
-  justify-content: space-between;
-  align-items: center;
   &__logo{
     width:200px;
   }
   &__links{
-    display: flex;
+    @include flex-center;
     font-size: 24px;
     font-weight: 500;
     gap:75px;
     & a{
-      color: black;
+      color: $black;
       text-decoration:none;
     }
     & a:hover{
@@ -45,76 +82,58 @@ ul{
 }
 
 .Banner{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color:white;
+  @include flex-center;
+  color:$white;
   margin: 10px 0;
-  border-radius:30px;
+  @include border-radius;
   width:100%;
-  object-fit: cover;
-  object-position: center;
-  background-position: top;
   height:230px;
   position:relative;
   z-index:1;
-  &__home{
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:230px;
-  border-radius:30px;
-    background: rgba(0, 0, 0, 0.5);
-    z-index:2;
+  &__homeFilter{
+    @include banner-filter-position;
+    background: $filter;
     filter: drop-shadow(0px 5px 0.2rem rgba(0, 0, 0, 0.459));
   }
-  &__about{
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:230px;
-    border-radius:30px;
-    background: rgba(0, 0, 0, 0.3);
-    z-index:2;
+  &__aboutFilter{
+    @include banner-filter-position;
+    background: $shadow;
   }
 
   &__text{
     position: absolute;
     font-size:48px;
     font-weight: 700;
-    // -webkit-text-stroke: 1px black;
-    text-shadow: 3px 3px 5px black;
+    // -webkit-text-stroke: 1px $black;
+    text-shadow: 3px 3px 5px $black;
     z-index:2;
   }
   & img {
-    border-radius: 30px;
+    @include border-radius;
     width: 100%;
-    object-fit: cover;
     height: 230px;
+    object-fit: cover;
     position: relative;
     z-index: 1;
     }
 }
 
-
-/********************Cards******************************/
+/*******Cards***********/
 .Card {
   display: flex;
   list-style: none;
   width: 360px;
   height: 360px;
-  border-radius: 20px;
-  filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+  @include border-radius(20px);
+  filter: drop-shadow(0px 3px 5px $shadow);
   &__wrapper{
     display: flex;
     width: fit-content;
     margin: 40px 0;
     margin-bottom: 50px;
     justify-content: space-evenly;
-    background-color: #F6F6F6;
-    border-radius: 20px;
+    background-color: $gray-light;
+    @include border-radius(20px);
     gap: 59px;
     padding: 59px;
     flex-wrap: wrap;
@@ -134,8 +153,8 @@ ul{
     left:0;
     width:360px;
     height:360px;
-    border-radius:15px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5) );
+    @include border-radius(15px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), $filter );
     z-index:2;
   }
   &__title{
@@ -144,7 +163,7 @@ ul{
     top: 300px;
     left: 20px;
     right: 20px;
-    color: white;
+    color: $white;
     font-weight: 500;
     font-size:18px;
   }
@@ -152,11 +171,10 @@ ul{
 }
                   
 .Footer{
-  display:flex;
+  @include flex-center;
   flex-direction: column;
-  align-items: center;
-  background-color: black;
-  color: white;
+  background-color: $black;
+  color: $white;
   padding: 18px 0  8px 0;
   & img{
     padding-top:50px;
@@ -168,6 +186,7 @@ ul{
    }
 }
 
+/***********************************Page About (à propos)************************************/
 .About__container{
   margin:30px 0;
   display: flex;
@@ -175,36 +194,31 @@ ul{
   gap: 13px;
 }
 
-
 .Collapse{
   position: relative;
   z-index: 2;
-  background-color: #FF6060;
+  background-color: $red;
   width:100%;
-  color:white;
+  color:$white;
   font-size:24px;
   font-weight: 700;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-space-between;
   border-radius: 5px;
   margin:10px;
   cursor: pointer;
   &__container{
-    display: flex;
-    // flex: 1 1 0;
+    display:flex;
     width:100%;
     margin-bottom: 40px;
-    justify-content: space-between;
     gap:80px;
     &> .Collapse{
       flex:1;
     }
   }
   &__wrapper{
-    display:flex;
-    flex-direction: column;
+    display: flex;
     align-items: center;
+    flex-direction: column;
     max-width: 85%; /* Ajuste cette valeur selon la taille souhaitée */
     margin: 0 auto;
     flex:1 1;
@@ -219,13 +233,14 @@ ul{
     transition: height 0.4s ease, transform 0.4s ease;
     transform: translateY(0px); 
    }
-   &__content.open {
-    position: relative;
-    z-index: 1;
-    margin-bottom: 10px;
-    height: 500px; 
-    transform: translateY(50px); 
-    transition: height 0.4s ease, transform 0.4s ease,;
+   &__content{
+    &.open {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 10px;
+      transform: translateY(50px); 
+      transition: height 0.4s ease, transform 0.4s ease;
+    }
   }
   &__content--inner {
     padding: 5px 0;
@@ -242,22 +257,91 @@ ul{
   }
 }
 
-  .Arrow {
-    transition: transform 0.3s ease;
-    transform: rotate(0deg);
-  }
-
-  .Arrow.open {
+.Arrow{
+  transition: transform 0.3s ease;
+  transform: rotate(0deg);
+&.open {
     transform: rotate(-180deg);
   }
+}
 
+/*************************************Page Logement***************************************/
+.SlideShow__pic{
+  padding-top:20px;
+  display: flex;
+  overflow: hidden;
+  margin: auto;
+  width:100%;
+  height:442px;
+  }
+  
+  .pics{
+  width:100%;
+  height:442px;
+  object-fit: cover;
+  @include border-radius;
+  position: relative;
+  z-index:1;
+  }
+  
+  .carrousel{
+    @include flex-space-between;
+    &__right{
+    @include flex-center;
+    @include border-radius(30px 0 0 30px);
+    width: 100px;
+    height: 441px;
+    position: absolute;
+    // background-color: rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    right: 100px;
+    top: 165px;
+    cursor:pointer;
+    }
+    &__left{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      border-radius:  30px 0 0 30px;
+      width: 100px;
+      height: 441px;
+      position: absolute;
+      // background-color: rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      left: 100px;
+      top: 165px;
+      cursor:pointer;  
+    }
+  }
+  
+  .imageCount {
+    position: absolute;
+    top: 560px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $white;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    @include border-radius(5px);
+    z-index: 2;
+    &__center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width:100%;
+    }
+  }
+
+  /**********Détails location********/
 .location{
   &__container{
     display: flex;
     justify-content: space-between;
   }
   &__title{
-  color:#FF6060;
+  color:$red;
   font-size: 36px;
   margin-bottom: 0;
   font-weight: 500;
@@ -266,13 +350,13 @@ ul{
     display: flex;
     gap:10px;
     & li{
-    background-color: #FF6060;
-    color: #fff;
+    background-color: $red;
+    color: $white;
     font-weight: 600;
     text-align: center;
     padding:5px 15px;
     min-width: 85px;
-    border-radius: 20px;
+    @include border-radius(20px);
     }
   }
   & p{
@@ -282,16 +366,15 @@ ul{
   }
 }
 
-
+/********Détails propriétaire**********/
 .owner{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   max-width :230px;
-  color: #FF6060;
+  color: $red;
   &__profile{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
   }
   &__stars{
     padding-left:18px;
@@ -311,19 +394,16 @@ ul{
     height:80px;
     width:80px;
     object-fit: cover;
-    border-radius: 40px;
+    @include border-radius(40px);
     // clip-path: circle(50%)
   }
 }
 
-
-
-
+/*****************************************Page Error404**************************************/
 .Error404{
-  color:#FF6060;
-  display:flex;
+  color:$red;
+  @include flex-center;
   flex-direction: column;
-  align-items: center;
   & h1{
     font-size: 19em;
     margin:0.2em;
@@ -336,90 +416,25 @@ ul{
     text-align:center;
   }
   &__link{
-    color:black;
+    color:$black;
     font-size:18px;
     font-weight:500;
     margin-bottom:100px;
   }
 }
 
-.SlideShow__pic{
-padding-top:20px;
-display: flex;
-overflow: hidden;
-margin: auto;
-width:100%;
-height:442px;
 
-}
 
-.pics{
-width:100%;
-height:442px;
-object-fit: cover;
-border-radius:30px;
-position: relative;
-z-index:1;
-}
 
-.carrousel{
-  display:flex;
-  justify-content: space-between;
-  &__right{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  border-radius:  0 30px 30px 0 ;
-  width: 100px;
-  height: 441px;
-  position: absolute;
-  // background-color: rgba(0, 0, 0, 0.1);
-  z-index: 2;
-  right: 100px;
-  top: 165px;
-  cursor:pointer;
-  }
-  &__left{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    // border-radius: 30px 0 0 30px;
-    border-radius:  30px 0 0 30px;
-    width: 100px;
-    height: 441px;
-    position: absolute;
-    // background-color: rgba(0, 0, 0, 0.1);
-    z-index: 2;
-    left: 100px;
-    top: 165px;
-    cursor:pointer;  
-  }
-}
 
-.imageCount {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 5px 10px;
-  border-radius: 5px;
-  z-index: 2;
-  &__center{
-    display: flex;
-    justify-content: center;
-    width:100%;
-  }
-}
-
+/******************************************************************************************/
+/*******************************************RESPONSIVE*************************************/
+/******************************************************************************************/
 @media (max-width: 768px) {
   body{
     margin:20px 30px;
   }
-
+/*********Page Home*********/
   .Header {
     padding: 10px 0;
     margin-bottom:30px;
@@ -442,10 +457,10 @@ z-index:1;
       font-size: 34px;
       width: 330px;
     }
-    &__home{
+    &__homeFilter{
     height:160px;
     }
-    &__about{
+    &__aboutFilter{
       height:160px;
   }
     & img{
@@ -457,7 +472,7 @@ z-index:1;
     width: 100%;
     height: 350px;
     &__wrapper{
-      background-color: white;
+      background-color: $white;
       width: 100%;
       padding:0;
       gap:25px;
@@ -487,46 +502,47 @@ z-index:1;
     }
   }
 
-  .Collapse__wrapper{
+/*********Page About (à propos)*********/
+  
+.Collapse{
+  &__container{
+    flex-direction: column;
+    gap:20px;
+    margin-top:10px;
+  }
+  &__wrapper{
     max-width:100%;
   }
-
-  .Error404{
-      & h1 {
-        font-size: 8.5em;
-        margin: 1em;
-      }
-      & h2{
-        display:inline;
-        font-size:24px;
-        text-align: center;
-        // width: 300px;
-      }
-      &__link{
-        margin-bottom:150px;
-        font-size:20px;
-      }
-    &__span{
-      display: block;
-    }
-  }
-  .Collapse{
-    &__container{
-      flex-direction: column;
-      gap:20px;
-      margin-top:10px;
-    }
-    &__wrapper{
-      margin:0;
-    }
-    &__content--inner{
-    font-size:20px;
+  &__content--inner{
+  font-size:20px;
   }
   .centerArrows{
     width:100%;
   }
 }
 
+/*********Page Error404*********/
+  .Error404{
+    & h1 {
+      font-size: 8.5em;
+      margin: 1em;
+    }
+    & h2{
+      display:inline;
+      font-size:24px;
+      text-align: center;
+      // width: 300px;
+    }
+    &__link{
+      margin-bottom:150px;
+      font-size:20px;
+    }
+    &__span{
+      display: block;
+    }
+  }
+
+/*********Page Logement*********/
   .carrousel{
     &__right{
       right: 25px;
@@ -564,5 +580,9 @@ z-index:1;
       align-items: center;
       margin:0;
     }
+  }
+
+  .Collapse__wrapper{
+      margin:0;
   }
 }

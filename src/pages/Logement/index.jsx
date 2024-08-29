@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import SlideShow from "../../components/SlideShow"
 import Collapse from "../../components/Collapse"
 import { useParams, useNavigate } from "react-router-dom"
@@ -22,11 +22,10 @@ const Logement = () => {
     }
   }, [logement, navigate])
 
-  // Si le logement n'est pas trouvé, on ne rend rien (car la redirection est en cours)
+  // Si le logement n'est pas trouvé, return = null
   if (!logement) {
     return null
   }
-
   const { description, equipments, title, host, rating, location, tags } = logement
   const equipmentList = (
     <ul>
@@ -38,7 +37,7 @@ const Logement = () => {
   const tagList = (
     <ul className="location__taglist">
       {tags.map((tag, index) => (
-        <li className="list_hidden" key={index}>
+        <li className="no_list_style" key={index}>
           {tag}
         </li>
       ))}
@@ -46,7 +45,7 @@ const Logement = () => {
   )
 
   const range = [1, 2, 3, 4, 5]
-  const stars = range.map((item) => (item <= rating ? <img className="owner__stars" src={red_star} alt="redStar" key={item} /> : <img className="owner__stars" src={grey_star} alt="greyStar" key={item} />))
+  const stars = range.map((rangeNote) => (rangeNote <= rating ? <img className="owner__stars" src={red_star} alt="redStar" key={rangeNote} /> : <img className="owner__stars" src={grey_star} alt="greyStar" key={rangeNote} />))
 
   return (
     <>
@@ -61,7 +60,7 @@ const Logement = () => {
         <div className="owner">
           <p className="owner__profile">
             <span>{host.name}</span>
-            <img className="owner__pic" src={host.picture} alt="" />
+            <img className="owner__pic" src={host.picture} alt="portrait du propriétaire" />
           </p>
           <p>{stars}</p>
         </div>

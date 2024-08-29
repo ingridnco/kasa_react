@@ -6,10 +6,12 @@ const Collapse = ({ title, content }) => {
   const [height, setHeight] = useState("0px")
   const contentRef = useRef(null)
 
+  //ouvre si fermé, ferme si ouvert
   const toggleCollapse = () => {
     setIsOpen(!isOpen)
   }
 
+  //définition hauteur du collapse (ouvert/fermé)
   useEffect(() => {
     isOpen ? setHeight(`${contentRef.current.scrollHeight}px`) : setHeight("0px")
   }, [isOpen])
