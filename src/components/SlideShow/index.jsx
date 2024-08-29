@@ -16,14 +16,16 @@ const SlideShow = () => {
   // État index de l'image courante
   const [imageIndex, setImageIndex] = useState(0)
 
+  const totalImages = pictures.length
+
   // image précédente
   const handlePrevImage = () => {
-    setImageIndex((prevIndex) => (prevIndex === 0 ? pictures.length - 1 : prevIndex - 1))
+    setImageIndex((prevIndex) => (prevIndex === 0 ? totalImages - 1 : prevIndex - 1))
   }
 
   // image suivante
   const handleNextImage = () => {
-    setImageIndex((nextIndex) => (nextIndex === pictures.length - 1 ? 0 : nextIndex + 1))
+    setImageIndex((nextIndex) => (nextIndex === totalImages - 1 ? 0 : nextIndex + 1))
   }
 
   return (
@@ -32,24 +34,32 @@ const SlideShow = () => {
       {pictures.length > 1 && (
         <div>
           <div className="carrousel__left">
-            <img className="centerArrows" src={BW_arrow} alt="Précédente" onClick={handlePrevImage} />
+            <img className="carrousel__arrows" src={BW_arrow} alt="Précédente" onClick={handlePrevImage} />
           </div>
           <div className="carrousel__right">
-            <img className="centerArrows" src={FW_arrow} alt="Suivante" onClick={handleNextImage} />
+            <img className="carrousel__arrows" src={FW_arrow} alt="Suivante" onClick={handleNextImage} />
           </div>
         </div>
       )}
 
-      <ul className="SlideShow__pic">
-        {/* Affichage de l'image courante uniquement */}
-        <li key={pictures[imageIndex]} className="no_list_style imageCount__center">
-          <img className="pics" src={pictures[imageIndex]} alt="galerie" />
-          {/* Numéro de l'image */}
-          <div className="imageCount">
-            {imageIndex + 1} / {pictures.length}
-          </div>
-        </li>
-      </ul>
+      <div className="SlideShow">
+        <div
+          className="SlideShow__track"
+          style={{
+            display: "flex",
+            transform: `translateX(-${imageIndex * 100}%)`, //pour un total de 500%
+            transition: "transform 0.5s ease",
+          }}
+        >
+          {pictures.map((picture, index) => (
+            <img key={index} className="SlideShow__pics" src={picture} alt={`pics ${index + 1}`} />
+          ))}
+        </div>
+        {/* Numéro de l'image */}
+        <div className="imageCount">
+          {imageIndex + 1} / {totalImages}
+        </div>
+      </div>
     </div>
   )
 }

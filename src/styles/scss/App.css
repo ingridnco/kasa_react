@@ -252,17 +252,12 @@ ul {
 }
 
 /*************************************Page Logement***************************************/
-.SlideShow__pic {
+.SlideShow {
   padding-top: 20px;
-  display: flex;
   overflow: hidden;
-  margin: auto;
-  width: 100%;
-  height: 442px;
 }
-
-.pics {
-  width: 100%;
+.SlideShow__pics {
+  min-width: 100%;
   height: 442px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -280,26 +275,27 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 30px 0 0 30px;
   width: 100px;
   height: 441px;
   position: absolute;
   z-index: 2;
-  right: 100px;
   top: 165px;
-  cursor: pointer;
+  border-radius: 30px 0 0 30px;
+  right: 100px;
 }
 .carrousel__left {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 30px 0 0 30px;
   width: 100px;
   height: 441px;
   position: absolute;
   z-index: 2;
-  left: 100px;
   top: 165px;
+  border-radius: 0 30px 30px 0;
+  left: 100px;
+}
+.carrousel__arrows {
   cursor: pointer;
 }
 
@@ -495,9 +491,6 @@ ul {
   .Collapse__content--inner {
     font-size: 20px;
   }
-  .Collapse .centerArrows {
-    width: 100%;
-  }
   /*********Page Error404*********/
   .Error404 h1 {
     font-size: 8.5em;
@@ -522,7 +515,7 @@ ul {
   .carrousel__left {
     left: 25px;
   }
-  .centerArrows {
+  .carrousel__arrows {
     width: 25%;
   }
   .location__details p {
