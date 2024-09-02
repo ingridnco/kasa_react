@@ -240,16 +240,14 @@ ul {
     top: -50px;
     overflow: hidden;
     height: 0;
-    transition: height 0.4s ease, transform 0.4s ease;
+    transition: height 0.4s ease-in-out, transform 0.4s ease;
     transform: translateY(0px);
-  }
-  &__content {
+
     &.open {
       position: relative;
       z-index: 1;
       margin-bottom: 10px;
       transform: translateY(50px);
-      transition: height 0.4s ease, transform 0.4s ease;
     }
   }
   &__content--inner {
