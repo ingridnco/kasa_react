@@ -50,9 +50,11 @@ const SlideShow = () => {
           {photoList}
         </div>
         {/* Numéro de l'image */}
-        <div className="imageCount">
-          {imageIndex + 1} / {totalImages}
-        </div>
+        {totalImages > 1 && (
+          <div className="imageCount">
+            {imageIndex + 1} / {totalImages}
+          </div>
+        )}
       </div>
     </div>
   )
