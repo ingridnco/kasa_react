@@ -299,12 +299,12 @@ ul {
   @include flex-center;
   &__right {
     @include carrousel-sides;
-    @include border-radius(30px 0 0 30px);
+    @include border-radius(0 30px 30px 0);
     right: 100px;
   }
   &__left {
     @include carrousel-sides;
-    @include border-radius(0 30px 30px 0);
+    @include border-radius(30px 0 0 30px);
     left: 100px;
   }
   &__arrows {
@@ -352,7 +352,7 @@ ul {
       color: $white;
       font-weight: 600;
       text-align: center;
-      padding: 5px 15px;
+      padding: 5px 20px;
       min-width: 85px;
       @include border-radius(20px);
     }
@@ -381,10 +381,12 @@ ul {
     display: flex;
     justify-content: right;
     & span {
+      font-size: 1.3em;
       text-align: right;
-      max-width: 80px;
+      max-width: 100px;
       line-height: 1.5;
       font-weight: 500;
+      margin-right: 5px;
     }
   }
   &__pic {
@@ -438,8 +440,9 @@ ul {
 
     &__links {
       text-transform: uppercase;
-      font-size: 1em;
+      font-size: 1.4em;
       gap: 60px;
+      margin-left: 15px;
     }
   }
 
@@ -480,7 +483,7 @@ ul {
     }
     &__title {
       top: 275px;
-      font-size: 24px;
+      font-size: 26px;
     }
   }
   .Footer {
@@ -499,6 +502,7 @@ ul {
   /*********Page About (à propos)*********/
 
   .Collapse {
+    border-radius: 10px;
     &__container {
       flex-direction: column;
       gap: 20px;
@@ -534,12 +538,19 @@ ul {
   }
 
   /*********Page Logement*********/
+  .SlideShow__pics {
+    height: 520px;
+  }
   .carrousel {
     &__right {
-      right: 25px;
+      right: 30px;
+      height: 520px;
+      top: 169px;
     }
     &__left {
-      left: 25px;
+      left: 30px;
+      height: 520px;
+      top: 169px;
     }
   }
 
@@ -547,6 +558,10 @@ ul {
     width: 25%;
   }
 
+  .imageCount {
+    top: 640px;
+    font-size: 18px;
+  }
   .location {
     &__details p {
       font-size: 24px;
@@ -554,6 +569,13 @@ ul {
     }
     &__container {
       flex-direction: column;
+    }
+    &__taglist {
+      flex-wrap: wrap;
+      & li {
+        font-size: 1.3em;
+        border-radius: 10px;
+      }
     }
   }
 
@@ -570,6 +592,9 @@ ul {
       display: flex;
       align-items: center;
       margin: 0;
+      & span {
+        font-size: 1.5em;
+      }
     }
   }
 
