@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import "../../styles/scss/App.css"
 import logo_kasa from "../../assets/logo_kasa.webp"
 
 const Header = () => {

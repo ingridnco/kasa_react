@@ -1,16 +1,15 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { useParams } from "react-router-dom"
 import { useState } from "react"
-import { annonces } from "../../data/annonces"
+import { rentals } from "../../data/rentals"
 import BW_arrow from "../../assets/BW_arrow.png"
 import FW_arrow from "../../assets/FW_arrow.png"
 
-const findId = (useParamsId) => {
-  return annonces.find((annonce) => annonce.id === useParamsId)
-}
+const findLocById = useParamsId => rentals.find(rental => rental.id === useParamsId)
 
 const SlideShow = () => {
   const { id } = useParams()
-  const logement = findId(id)
+  const logement = findLocById(id)
   const { pictures } = logement
 
   // État index de l'image courante
@@ -18,20 +17,24 @@ const SlideShow = () => {
 
   const totalImages = pictures.length
 
+  const photoList = pictures.map((picture, index) => <img key={`${id} photo ${index + 1}`} className="SlideShow__pics" src={picture} alt={`Photo n°${index + 1}/${totalImages}`} />)
+
   // image précédente
-  const handlePrevImage = () => {
-    setImageIndex((prevIndex) => (prevIndex === 0 ? totalImages - 1 : prevIndex - 1))
-  }
+  const handlePrevImage = () => setImageIndex(currentIndex => (currentIndex > 0 ? currentIndex - 1 : totalImages - 1))
 
   // image suivante
-  const handleNextImage = () => {
-    setImageIndex((nextIndex) => (nextIndex === totalImages - 1 ? 0 : nextIndex + 1))
+  const handleNextImage = () => setImageIndex(currentIndex => (currentIndex < totalImages - 1 ? currentIndex + 1 : 0))
+
+  const SlideShowStyle = {
+    transform: `translateX(-${imageIndex * 100}%)`, // pour un total de 500%
+    transition: "transform 0.6s ease",
+    justifyContent: totalImages > 1 ? "flex-start" : "center",
   }
 
   return (
     <div className="carrousel">
       {/* Affiche les flèches s'il y a + d'une image */}
-      {pictures.length > 1 && (
+      {totalImages > 1 && (
         <div>
           <div className="carrousel__left">
             <img className="carrousel__arrows" src={BW_arrow} alt="Précédente" onClick={handlePrevImage} />
@@ -43,17 +46,8 @@ const SlideShow = () => {
       )}
 
       <div className="SlideShow">
-        <div
-          className="SlideShow__track"
-          style={{
-            display: "flex",
-            transform: `translateX(-${imageIndex * 100}%)`, //pour un total de 500%
-            transition: "transform 0.5s ease",
-          }}
-        >
-          {pictures.map((picture, index) => (
-            <img key={index} className="SlideShow__pics" src={picture} alt={`pics ${index + 1}`} />
-          ))}
+        <div className="SlideShow__anim" style={SlideShowStyle}>
+          {photoList}
         </div>
         {/* Numéro de l'image */}
         <div className="imageCount">

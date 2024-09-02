@@ -1,24 +1,22 @@
+import { rentals } from "../../data/rentals"
+import { useParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import SlideShow from "../../components/SlideShow"
 import Collapse from "../../components/Collapse"
-import { useParams, useNavigate } from "react-router-dom"
-import { annonces } from "../../data/annonces"
 import red_star from "../../assets/red_star.png"
 import grey_star from "../../assets/grey_star.png"
 
-const findId = (useParamsId) => {
-  return annonces.find((annonce) => annonce.id === useParamsId)
-}
+const findLocById = useParamsId => rentals.find(rental => rental.id === useParamsId)
 
 const Logement = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const logement = findId(id)
+  const logement = findLocById(id)
 
-  // Utilisation de useEffect pour gérer la redirection
+  // useEffect pour redirection
   useEffect(() => {
     if (!logement) {
-      navigate("/error") // Redirige vers la page d'erreur si l'ID est invalide
+      navigate("/error") // Redirige vers page d'erreur si ID inconnue
     }
   }, [logement, navigate])
 
@@ -26,26 +24,28 @@ const Logement = () => {
   if (!logement) {
     return null
   }
+
   const { description, equipments, title, host, rating, location, tags } = logement
   const equipmentList = (
     <ul>
       {equipments.map((equipment, index) => (
-        <li key={index}>{equipment}</li>
+        <li key={`${id} equipment${index}`}>{equipment}</li>
       ))}
     </ul>
   )
   const tagList = (
     <ul className="location__taglist">
       {tags.map((tag, index) => (
-        <li className="no_list_style" key={index}>
+        <li className="no_list_style" key={`${id} tag${index}`}>
           {tag}
         </li>
       ))}
     </ul>
   )
 
+  // Gestion des étoiles de rating
   const range = [1, 2, 3, 4, 5]
-  const stars = range.map((rangeNote) => (rangeNote <= rating ? <img className="owner__stars" src={red_star} alt="redStar" key={rangeNote} /> : <img className="owner__stars" src={grey_star} alt="greyStar" key={rangeNote} />))
+  const stars = range.map(rangeNum => (rangeNum <= rating ? <img className="owner__stars" src={red_star} alt="Étoile rouge" key={rangeNum} /> : <img className="owner__stars" src={grey_star} alt="Étoile grise" key={rangeNum} />))
 
   return (
     <>
