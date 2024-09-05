@@ -26,9 +26,8 @@ const SlideShow = () => {
   const handleNextImage = () => setImageIndex(currentIndex => (currentIndex < totalImages - 1 ? currentIndex + 1 : 0))
 
   const SlideShowStyle = {
-    transform: `translateX(-${imageIndex * 100}%)`, // pour un total de 500%
+    transform: `translateX(-${imageIndex * 100}%)`, // pour un total de (nbre d'images x 100)%
     transition: "transform 0.6s ease",
-    justifyContent: totalImages > 1 ? "flex-start" : "center",
   }
 
   return (
