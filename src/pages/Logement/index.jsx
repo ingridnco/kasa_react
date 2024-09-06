@@ -10,8 +10,8 @@ const findLocById = useParamsId => rentals.find(rental => rental.id === useParam
 
 const Logement = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
   const logement = findLocById(id)
+  const navigate = useNavigate()
 
   // useEffect pour redirection
   useEffect(() => {
