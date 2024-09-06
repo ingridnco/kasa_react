@@ -17,7 +17,7 @@ const SlideShow = () => {
 
   const totalImages = pictures.length
 
-  const photoList = pictures.map((picture, index) => <img key={`${id} photo ${index + 1}`} className="SlideShow__pics" src={picture} alt={`Photo n°${index + 1}/${totalImages}`} />)
+  const photoList = pictures.map((picture, index) => <img key={`${id} photo ${index + 1}`} className="SlideShow__photo" src={picture} alt={`Photo n°${index + 1}/${totalImages}`} />)
 
   // image précédente
   const handlePrevImage = () => setImageIndex(currentIndex => (currentIndex > 0 ? currentIndex - 1 : totalImages - 1))
@@ -31,20 +31,20 @@ const SlideShow = () => {
   }
 
   return (
-    <div className="carrousel">
+    <section className="SlideShow">
       {/* Affiche les flèches s'il y a + d'une image */}
       {totalImages > 1 && (
-        <div>
-          <div className="carrousel__left">
-            <img className="carrousel__arrows" src={BW_arrow} alt="Précédente" onClick={handlePrevImage} />
+        <>
+          <div className="SlideShow__left">
+            <img className="SlideShow__arrows" src={BW_arrow} alt="Précédente" onClick={handlePrevImage} />
           </div>
-          <div className="carrousel__right">
-            <img className="carrousel__arrows" src={FW_arrow} alt="Suivante" onClick={handleNextImage} />
+          <div className="SlideShow__right">
+            <img className="SlideShow__arrows" src={FW_arrow} alt="Suivante" onClick={handleNextImage} />
           </div>
-        </div>
+        </>
       )}
 
-      <div className="SlideShow">
+      <div className="SlideShow__pics">
         <div className="SlideShow__anim" style={SlideShowStyle}>
           {photoList}
         </div>
@@ -55,7 +55,7 @@ const SlideShow = () => {
           </div>
         )}
       </div>
-    </div>
+    </section>
   )
 }
 

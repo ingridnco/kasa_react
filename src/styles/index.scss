@@ -36,8 +36,8 @@ $shadow: rgba(0, 0, 0, 0.3);
   @include border-radius;
 }
 
-// si besoin de colorer les côtés du carrousel, activer le background-color
-@mixin carrousel_sides {
+// si besoin de colorer les côtés du SlideShow, activer le background-color
+@mixin SlideShow-sides {
   @include flex-center;
   width: 100px;
   height: 414px;
@@ -278,38 +278,38 @@ ul {
 }
 
 /*************************************Page Logement***************************************/
+
 .SlideShow {
-  padding-top: 20px;
-  width: 100%;
-  overflow: hidden;
+  @include flex-center;
+  &__right {
+    @include SlideShow-sides;
+    @include border-radius(0 30px 30px 0);
+    right: 100px;
+  }
+  &__left {
+    @include SlideShow-sides;
+    @include border-radius(30px 0 0 30px);
+    left: 100px;
+  }
+  &__arrows {
+    cursor: pointer;
+  }
+  &__pics {
+    padding-top: 20px;
+    width: 100%;
+    overflow: hidden;
+  }
   &__anim {
     display: flex;
     width: 100%;
   }
-  &__pics {
+  &__photo {
     min-width: 100%;
     height: 415px;
     object-fit: cover;
     @include border-radius;
     position: relative;
     z-index: 1;
-  }
-}
-
-.carrousel {
-  @include flex-center;
-  &__right {
-    @include carrousel-sides;
-    @include border-radius(0 30px 30px 0);
-    right: 100px;
-  }
-  &__left {
-    @include carrousel-sides;
-    @include border-radius(30px 0 0 30px);
-    left: 100px;
-  }
-  &__arrows {
-    cursor: pointer;
   }
 }
 
@@ -366,16 +366,16 @@ ul {
 }
 
 /********Détails propriétaire**********/
-.owner {
+.location__owner {
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 230px;
   color: $red;
-  &__profile {
+  &--profile {
     @include flex-center;
   }
-  &__stars {
+  &--stars {
     padding-left: 18px;
   }
   & p {
@@ -390,7 +390,7 @@ ul {
       margin-right: 5px;
     }
   }
-  &__pic {
+  &--pic {
     margin-left: 10px;
     height: 80px;
     width: 80px;
@@ -541,10 +541,10 @@ ul {
   }
 
   /*********Page Logement*********/
-  .SlideShow__pics {
+  .SlideShow__photo {
     height: 520px;
   }
-  .carrousel {
+  .SlideShow {
     &__right {
       right: 30px;
       height: 520px;
@@ -557,7 +557,7 @@ ul {
     }
   }
 
-  .carrousel__arrows {
+  .SlideShow__arrows {
     width: 25%;
   }
 
@@ -582,11 +582,11 @@ ul {
     }
   }
 
-  .owner {
+  .location__owner {
     flex-direction: row-reverse;
     max-width: 100%;
     justify-content: space-between;
-    &__stars {
+    &--stars {
       padding-left: 13px;
       width: 30px;
       height: 30px;

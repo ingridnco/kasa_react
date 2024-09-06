@@ -45,30 +45,31 @@ const Logement = () => {
 
   // Gestion des étoiles de rating
   const range = [1, 2, 3, 4, 5]
-  const stars = range.map(rangeNum => (rangeNum <= rating ? <img className="owner__stars" src={red_star} alt="Étoile rouge" key={rangeNum} /> : <img className="owner__stars" src={grey_star} alt="Étoile grise" key={rangeNum} />))
+  const stars = range.map(rangeNum => (rangeNum <= rating ? <img className="location__owner--stars" src={red_star} alt="Étoile rouge" key={rangeNum} /> : <img className="location__owner--stars" src={grey_star} alt="Étoile grise" key={rangeNum} />))
 
   return (
     <>
       <SlideShow />
-      <div className="location__container">
+      <section className="location__container">
         <div className="location__details">
           <h1 className="location__title">{title}</h1>
           <p>{location}</p>
           {tagList}
         </div>
 
-        <div className="owner">
-          <p className="owner__profile">
+        <div className="location__owner">
+          <p className="location__owner--profile">
             <span>{host.name}</span>
-            <img className="owner__pic" src={host.picture} alt="portrait du propriétaire" />
+            <img className="location__owner--pic" src={host.picture} alt="portrait du propriétaire" />
           </p>
           <p>{stars}</p>
         </div>
-      </div>
-      <div className="Collapse__container">
+      </section>
+
+      <section className="Collapse__container">
         <Collapse title="Description" content={description} />
         <Collapse title="Équipement" content={equipmentList} />
-      </div>
+      </section>
     </>
   )
 }
